@@ -639,7 +639,7 @@ export default function App() {
                 const exos = editing.exos.map((y, j) => (j === i ? { ...y, n: e.target.value } : y));
                 setEditing({ ...editing, exos });
               }} style={{ flex: 2 }} />
-              <Input placeholder="kg" inputMode="decimal" value={x.charge} onChange={(e) => {
+              <Input placeholder="kg" value={x.charge} onChange={(e) => {
                 const exos = editing.exos.map((y, j) => (j === i ? { ...y, charge: e.target.value } : y));
                 setEditing({ ...editing, exos });
               }} style={{ flex: 0.8 }} />
@@ -699,8 +699,9 @@ export default function App() {
           </div>
           {s.note && <div style={{ fontFamily: F.body, fontSize: 13, color: C.muted, marginTop: 8, fontStyle: "italic" }}>{s.note}</div>}
           <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
-            <Btn small kind="ghost" onClick={() => redoSeance(s)}>Refaire aujourd'hui</Btn>
-            <Btn small kind="ghost" style={{ borderColor: C.line, color: C.muted }} onClick={() => saveSeances(seances.filter((x) => x.id !== s.id))}>Supprimer</Btn>
+            <Btn small kind="ghost" onClick={() => setEditing({ ...s, exos: s.exos.map((x) => ({ ...x })) })}>Modifier</Btn>
+            <Btn small kind="ghost" onClick={() => redoSeance(s)}>Refaire auj.</Btn>
+            <Btn small kind="ghost" style={{ marginLeft: "auto", borderColor: C.line, color: C.muted }} onClick={() => saveSeances(seances.filter((x) => x.id !== s.id))}>Supprimer</Btn>
           </div>
         </Card>
       ))}
